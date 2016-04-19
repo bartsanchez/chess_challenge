@@ -30,6 +30,18 @@ def get_menaced_king_positions(position, rows, cols):
     if current_j - 1 >= 0:
         result.append((current_i, current_j - 1))
 
+    if current_i + 1 < rows and current_j + 1 < cols:
+        result.append((current_i + 1, current_j + 1))
+
+    if current_i - 1 >= 0 and current_j + 1 < cols:
+        result.append((current_i - 1, current_j + 1))
+
+    if current_i + 1 < rows and current_j - 1 >= 0:
+        result.append((current_i + 1, current_j - 1))
+
+    if current_i - 1 >= 0 and current_j - 1 >= 0:
+        result.append((current_i - 1, current_j - 1))
+
     return result
 
 

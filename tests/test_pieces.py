@@ -17,15 +17,16 @@ class TestMenacedPositionsCalls:
 
 class TestKing:
     def test_menaced_king_positions__left_top_corner(self):
-        result = [(1, 0), (0, 1)]
+        result = [(1, 0), (0, 1), (1, 1)]
         assert pieces.get_menaced_king_positions((0, 0), 3, 3) == result
 
     def test_menaced_king_positions__center(self):
-        result = [(2, 1), (0, 1), (1, 2), (1, 0)]
+        result = [(2, 1), (0, 1), (1, 2), (1, 0), (2, 2), (0, 2), (2, 0),
+                  (0, 0)]
         assert pieces.get_menaced_king_positions((1, 1), 3, 3) == result
 
     def test_menaced_king_positions__right_bottom_corner(self):
-        result = [(1, 2), (2, 1)]
+        result = [(1, 2), (2, 1), (1, 1)]
         assert pieces.get_menaced_king_positions((2, 2), 3, 3) == result
 
 
