@@ -1,4 +1,13 @@
+import mock
+
 from chess_challenge import pieces
+
+
+class TestMenacedPositionsCalls:
+    @mock.patch('chess_challenge.pieces.get_menaced_king_positions')
+    def test_calling_king(self, king_mock):
+        pieces.get_menaced_positions('K', (0, 0), 3, 3)
+        king_mock.assert_called_once_with('K', (0, 0), 3, 3)
 
 
 class TestKing:

@@ -3,6 +3,14 @@ Pieces functions.
 """
 
 
+def get_menaced_positions(piece, position, rows, cols):
+    """Determine the function to call for a given piece."""
+    PIECES_FUNCTIONS = {
+        'K': get_menaced_king_positions,
+    }
+    return PIECES_FUNCTIONS[piece](piece, position, rows, cols)
+
+
 def get_menaced_king_positions(piece, position, rows, cols):
     """Return all menaced position by a king."""
     result = []
