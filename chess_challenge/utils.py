@@ -1,3 +1,7 @@
+"""
+Utils functions.
+"""
+
 import itertools
 
 PIECES = ['K', 'R']
