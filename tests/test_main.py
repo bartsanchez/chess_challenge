@@ -1,5 +1,14 @@
 from chess_challenge import main
 
 
-def test_solve():
-    assert main.solve(1, 1, 'foo') == 0
+class TestSolve:
+    def test_solve(self):
+        assert main.solve(1, 1, ['K']) == 0
+
+
+class TestSolvePieces:
+    def test_solve__valid_pieces(self):
+        assert main.solve(1, 1, ['K']) == 0
+
+    def test_solve__invalid_pieces(self):
+        assert main.solve(1, 1, [0]) == -1
