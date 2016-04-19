@@ -20,3 +20,17 @@ class TestPiecesCombinations:
     def test_pieces_combinations__KKR(self):
         result = set([('K', 'K', 'R'), ('K', 'R', 'K'), ('R', 'K', 'K')])
         assert utils.get_pieces_combinations(['K', 'K', 'R']) == result
+
+
+class TestNextPosition:
+    def test_get_next_position__left_top_corner(self):
+        assert utils.get_next_position(0, 0, 3, 3) == (1, 0)
+
+    def test_get_next_position__center(self):
+        assert utils.get_next_position(1, 1, 3, 3,) == (2, 1)
+
+    def test_get_next_position__change_row(self):
+        assert utils.get_next_position(2, 0, 3, 3) == (0, 1)
+
+    def test_get_next_position__last_position(self):
+        assert utils.get_next_position(2, 2, 3, 3) == (False, False)
