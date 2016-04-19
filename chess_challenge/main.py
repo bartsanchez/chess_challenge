@@ -3,7 +3,7 @@ Main functions.
 """
 import collections
 
-from chess_challenge import pieces
+from chess_challenge import pieces as pieces_mod
 from chess_challenge import utils
 
 
@@ -48,12 +48,12 @@ def solve_combination(combination,
 
     while i is not False and i < rows and j < cols:
         if (i, j) not in menaced_positions:
-            new_menaces = pieces.get_menaced_positions(
+            new_menaces = pieces_mod.get_menaced_positions(
                 combination[0], (i, j), rows, cols,
             )
             if not set(occupied_positions).intersection(new_menaces):
                 next_i, next_j = utils.get_next_position(i, j, rows, cols)
-                new_menaces = pieces.get_menaced_positions(
+                new_menaces = pieces_mod.get_menaced_positions(
                     combination[0], (i, j), rows, cols,
                 )
                 solve_combination(

@@ -5,11 +5,11 @@ Pieces functions.
 
 def get_menaced_positions(piece, position, rows, cols):
     """Determine the function to call for a given piece."""
-    PIECES_FUNCTIONS = {
+    pieces_functions = {
         'K': get_menaced_king_positions,
         'R': get_menaced_rook_positions,
     }
-    return PIECES_FUNCTIONS[piece](position, rows, cols)
+    return pieces_functions[piece](position, rows, cols)
 
 
 def get_menaced_king_positions(position, rows, cols):
