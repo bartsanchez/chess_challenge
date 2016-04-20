@@ -1,0 +1,9 @@
+Total unique configurations: 4
+Time spent: 0:00:00.001348
+Combination: ('K', 'K', 'R')
+[(0, 0), (2, 0), (1, 2)]
+Combination: ('K', 'R', 'K')
+[(0, 0), (2, 1), (0, 2)]
+[(2, 0), (0, 1), (2, 2)]
+Combination: ('R', 'K', 'K')
+[(1, 0), (0, 2), (2, 2)]
