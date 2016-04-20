@@ -12,6 +12,7 @@ def get_menaced_positions(piece, position, rows, cols):
         'R': get_menaced_rook_positions,
         'B': get_menaced_bishop_positions,
         'Q': get_menaced_queen_positions,
+        'N': get_menaced_knight_positions,
     }
     return pieces_functions[piece](position, rows, cols)
 
@@ -117,3 +118,27 @@ def get_menaced_queen_positions(position, rows, cols):
         get_menaced_rook_positions(position, rows, cols) +
         get_menaced_bishop_positions(position, rows, cols)
     )
+
+
+def get_menaced_knight_positions(position, rows, cols):
+    """Return all menaced positions by a knight."""
+    result = []
+
+    positions = list(board.get_coordinates_from_board(rows, cols))
+
+    values = [
+        (position[0] + 1, position[1] + 2),
+        (position[0] + 2, position[1] + 1),
+        (position[0] + 2, position[1] - 1),
+        (position[0] + 1, position[1] - 2),
+        (position[0] - 1, position[1] - 2),
+        (position[0] - 2, position[1] - 1),
+        (position[0] - 2, position[1] + 1),
+        (position[0] - 1, position[1] + 2),
+    ]
+
+    for value in values:
+        if value in positions:
+            result.append(value)
+
+    return result
