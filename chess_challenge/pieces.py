@@ -11,6 +11,7 @@ def get_menaced_positions(piece, position, rows, cols):
         'K': get_menaced_king_positions,
         'R': get_menaced_rook_positions,
         'B': get_menaced_bishop_positions,
+        'Q': get_menaced_queen_positions,
     }
     return pieces_functions[piece](position, rows, cols)
 
@@ -108,3 +109,11 @@ def get_menaced_bishop_positions(position, rows, cols):
         result.append((current_i, current_j))
 
     return result
+
+
+def get_menaced_queen_positions(position, rows, cols):
+    """Return all menaced positions by a queen."""
+    return (
+        get_menaced_rook_positions(position, rows, cols) +
+        get_menaced_bishop_positions(position, rows, cols)
+    )
