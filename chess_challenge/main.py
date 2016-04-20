@@ -17,6 +17,7 @@ def solve(rows, cols, pieces):
     solutions = collections.defaultdict(list)
     combinations = utils.get_pieces_combinations(pieces)
     for combination in combinations:
+        # TODO: Implement concurrency here for lower the time spent
         solve_combination(
             combination=combination,
             original_combination=combination,
