@@ -4,7 +4,7 @@ Utils functions.
 
 import itertools
 
-PIECES = ['K', 'R']
+PIECES = ['K', 'R', 'B', 'Q', 'N']
 
 
 def are_valid_pieces(pieces):
