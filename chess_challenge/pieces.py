@@ -4,7 +4,10 @@ Pieces functions.
 
 from chess_challenge import board
 
+from repoze.lru import lru_cache
 
+
+@lru_cache(maxsize=500)
 def get_menaced_positions(piece, position, rows, cols):
     """Determine the function to call for a given piece."""
     pieces_functions = {
@@ -17,6 +20,7 @@ def get_menaced_positions(piece, position, rows, cols):
     return pieces_functions[piece](position, rows, cols)
 
 
+@lru_cache(maxsize=500)
 def get_menaced_king_positions(position, rows, cols):
     """Return all menaced position by a king."""
     result = []
@@ -47,9 +51,10 @@ def get_menaced_king_positions(position, rows, cols):
     if current_i - 1 >= 0 and current_j - 1 >= 0:
         result.append((current_i - 1, current_j - 1))
 
-    return result
+    return set(result)
 
 
+@lru_cache(maxsize=500)
 def get_menaced_rook_positions(position, rows, cols):
     """Return all menaced positions by a rook."""
     result = []
@@ -76,9 +81,10 @@ def get_menaced_rook_positions(position, rows, cols):
         j -= 1
         result.append((current_i, j))
 
-    return result
+    return set(result)
 
 
+@lru_cache(maxsize=500)
 def get_menaced_bishop_positions(position, rows, cols):
     """Return all menaced positions by a bishop."""
     result = []
@@ -109,17 +115,19 @@ def get_menaced_bishop_positions(position, rows, cols):
         current_j += 1
         result.append((current_i, current_j))
 
+    return set(result)
+
+
+@lru_cache(maxsize=500)
+def get_menaced_queen_positions(position, rows, cols):
+    """Return all menaced positions by a queen."""
+    result = get_menaced_rook_positions(position, rows, cols).union(
+        get_menaced_bishop_positions(position, rows, cols)
+    )
     return result
 
 
-def get_menaced_queen_positions(position, rows, cols):
-    """Return all menaced positions by a queen."""
-    return (
-        get_menaced_rook_positions(position, rows, cols) +
-        get_menaced_bishop_positions(position, rows, cols)
-    )
-
-
+@lru_cache(maxsize=500)
 def get_menaced_knight_positions(position, rows, cols):
     """Return all menaced positions by a knight."""
     result = []
@@ -141,4 +149,4 @@ def get_menaced_knight_positions(position, rows, cols):
         if value in positions:
             result.append(value)
 
-    return result
+    return set(result)

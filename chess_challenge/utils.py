@@ -4,6 +4,8 @@ Utils functions.
 
 import itertools
 
+from repoze.lru import lru_cache
+
 PIECES = ['K', 'R', 'B', 'Q', 'N']
 
 
@@ -17,6 +19,7 @@ def get_pieces_combinations(pieces):
     return set(list(itertools.permutations(pieces)))
 
 
+@lru_cache(maxsize=500)
 def get_next_position(i, j, rows, cols):
     """Return the next position in the board if available, False otherwise."""
     if i + 1 < rows:

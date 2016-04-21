@@ -25,8 +25,8 @@ def solve(rows, cols, pieces):
             j=0,
             rows=rows,
             cols=cols,
-            occupied_positions=[],
-            menaced_positions=[],
+            occupied_positions=set(),
+            menaced_positions=set(),
             solutions=solutions,
         )
 
@@ -52,7 +52,7 @@ def solve_combination(combination,
             new_menaces = pieces_mod.get_menaced_positions(
                 combination[0], (i, j), rows, cols,
             )
-            if not set(occupied_positions).intersection(new_menaces):
+            if not occupied_positions.intersection(new_menaces):
                 next_i, next_j = utils.get_next_position(i, j, rows, cols)
                 new_menaces = pieces_mod.get_menaced_positions(
                     combination[0], (i, j), rows, cols,
@@ -64,8 +64,8 @@ def solve_combination(combination,
                     j=next_j,
                     rows=rows,
                     cols=cols,
-                    occupied_positions=occupied_positions[:] + [(i, j)],
-                    menaced_positions=menaced_positions[:] + new_menaces,
+                    occupied_positions=occupied_positions.union(set([(i, j)])),
+                    menaced_positions=menaced_positions.union(new_menaces),
                     solutions=solutions,
                 )
         (i, j) = utils.get_next_position(i, j, rows, cols)
